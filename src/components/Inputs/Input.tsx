@@ -33,7 +33,7 @@ export const Input = (p: {
         value={value}
       />
 
-      <TextError id="name" err={p.isError} />
+      <TextError id={p.id} err={p.isError} />
     </>
   );
 };

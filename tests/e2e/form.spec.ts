@@ -60,7 +60,7 @@ test.describe('Form check', () => {
 
   test('Check errors', async ({ page }) => {
     await page.goto(config.website);
-    await page.locator('data-testid=form-field__submit >> button').click();
+    await page.locator('data-testid=form-field__submit').click();
     await expect(page.locator('data-testid=error__name')).toBeVisible();
     await expect(page.locator('data-testid=error__name')).toHaveText('Name field is required');
     await expect(page.locator('data-testid=error__country')).toBeVisible();
@@ -68,16 +68,16 @@ test.describe('Form check', () => {
       'Country field is required'
     );
     await expect(page.locator('data-testid=error__taxid')).toBeVisible();
-    await expect(page.locator('data-testid=error__taxid')).toHaveText('Tax Id field is required');
+    await expect(page.locator('data-testid=error__taxid')).toHaveText('Country not selected');
 
     await page.locator('data-testid=input__name').click();
     await page.locator('data-testid=input__name').fill('Ma');
-    await page.locator('data-testid=form-field__submit >> button').click();
+    await page.locator('data-testid=form-field__submit').click();
     await expect(page.locator('data-testid=error__name')).toHaveText(
       'Name must contain minimum 3 charakters'
     );
     await page.locator('data-testid=input__name').fill('Marius');
-    await page.locator('data-testid=form-field__submit >> button').click();
+    await page.locator('data-testid=form-field__submit').click();
     expect(page.locator('data-testid=error__name')).toBeHidden();
   });
 
@@ -92,7 +92,7 @@ test.describe('Form check', () => {
     ).click();
     await page.locator('data-testid=input__taxid').click();
     await page.locator('data-testid=input__taxid').fill('abcde@!!21-22');
-    await page.locator('data-testid=form-field__submit >> button').click();
+    await page.locator('data-testid=form-field__submit').click();
     await expect(page.locator('data-testid=error__server')).toBeVisible();
   });
 });

@@ -29,20 +29,20 @@ export const Form = () => {
 
     const schema = yup.object().shape({
       name: yup.string().min(3, msg.nameMin3Chars).required(msg.nameRequired),
-      // country: yup.string().required(msg.countryRequired),
-      // taxId: yup
-      //   .string()
-      //   .when('country', {
-      //     is: (country: string) => (country ? false : true),
-      //     then: yup.string().required(msg.taxIdCountryNotSelected),
-      //   })
-      //   .matches(selectedCountry?.regEx as RegExp, msg.taxIdNotMatch)
-      //   .required(msg.taxIdRequired),
+      country: yup.string().required(msg.countryRequired),
+      taxId: yup
+        .string()
+        .when('country', {
+          is: (country: string) => (country ? false : true),
+          then: yup.string().required(msg.taxIdCountryNotSelected),
+        })
+        .matches(selectedCountry?.regEx as RegExp, msg.taxIdNotMatch)
+        .required(msg.taxIdRequired),
     });
 
     schema
       .validate({ name, country, taxId }, { abortEarly: false, strict: true })
-      .then(async (obj) => {
+      .then(async () => {
         formErrorSet(null);
         isLoadingSet(true);
 
