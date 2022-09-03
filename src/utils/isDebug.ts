@@ -1,5 +1,5 @@
 const isDebug = () => {
-  return window.__ENV.REACT_APP_DEBUG === 'true';
+  return import.meta.env.REACT_APP_DEBUG === true;
 };
 
 export default isDebug;
