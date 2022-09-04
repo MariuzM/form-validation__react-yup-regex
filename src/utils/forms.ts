@@ -20,6 +20,6 @@ export const yupErrGenerator = (
 
     isErrorCallback(newErrorObj);
   } else {
-    isDebug() && console.log('Error', JSON.stringify(err.inner));
+    isDebug() && console.log('Error', JSON.stringify(err));
   }
 };
